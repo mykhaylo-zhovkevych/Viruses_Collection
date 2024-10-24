@@ -4,7 +4,8 @@ import java.awt.*;
 public class Frame extends JFrame {
 
     Frame() {
-        ImageIcon imageIcon = new ImageIcon("logo_lock.png");
+        ImageIcon imageIcon = new ImageIcon(getClass().getResource("/logo_lock.png"));
+
 
         JLabel label = new JLabel();
         label.setText("Your Computer Has VIRUS");
