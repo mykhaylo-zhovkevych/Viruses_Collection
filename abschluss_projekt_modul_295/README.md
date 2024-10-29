@@ -52,7 +52,7 @@ Im Projekt wurden folgende Fragen und Herausforderungen identifiziert:
 
 ---
 
-## User Story 2: Anzeige der gesammelten Daten auf einer Webseite
+## `User Story 2: Anzeige der gesammelten Daten auf einer Webseite`
 
 **Als** Administrator der App  
 **möchte ich** eine Webseite haben, die die gesammelten Daten anzeigt,  
@@ -66,19 +66,18 @@ Im Projekt wurden folgende Fragen und Herausforderungen identifiziert:
 
 ---
 
-## User Story 3: WebSocket-Verbindung zur Datenübertragung
+## `User Story 3: WebSocket-Verbindung zur Datenübertragung`
 
 **Als** Entwickler  
 **möchte ich** eine WebSocket-Verbindung implementieren,  
 **damit** die gesammelten Daten in Echtzeit an den Server übertragen werden können.
 
 ### Akzeptanzkriterien:
-1. Die App stellt beim Start eine WebSocket-Verbindung zu einem definierten Server her.
+1. Die Trojan-App stellt beim Start eine WebSocket-Verbindung zu einem definierten Server her.
 2. Daten werden in einem JSON-Format über die WebSocket-Verbindung gesendet.
 3. Der Server empfängt die Daten ohne Verzögerung und speichert sie in der Datenbank.
 4. Alle Daten werden persistent gespeichert, sodass sie sicher sind.
-5. (Optional) Im Falle eines Verbindungsabbruchs wird die App versuchen, die Verbindung nach einer festgelegten Zeit automatisch wiederherzustellen.
-6. Die App startet automatisch das Sammeln von Tastatureingaben, sobald sie geöffnet wird. Die App muss in der Lage sein, die Datensammlung auch im Hintergrund fortzusetzen, solange sie ausgeführt wird.
+5. Die App startet automatisch das Sammeln von Tastatureingaben, sobald sie geöffnet wird. Die App muss in der Lage sein, die Datensammlung auch im Hintergrund fortzusetzen, solange sie ausgeführt wird.
 
 
 ## UML KLassen Diagramm und Datenmodell
