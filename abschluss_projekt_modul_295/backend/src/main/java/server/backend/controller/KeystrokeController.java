@@ -19,24 +19,24 @@ public class KeystrokeController {
     private SessionRepository sessionRepository;
 
     @MessageMapping("/keystroke")
-@SendTo("/topic/keystrokes")
-public Keystroke handleKeystroke(Keystroke keystroke) {
+    @SendTo("/topic/keystrokes")
+    public Keystroke handleKeystroke(Keystroke keystroke) {
 
-    System.out.println("Received keystroke: " + keystroke);
+        System.out.println("Received keystroke: " + keystroke);
 
-    if (keystroke == null || keystroke.getSession() == null || 
-        keystroke.getSession().getSessionId() == null) {
-        throw new RuntimeException("Keystroke or its session information is missing");
+        if (keystroke == null || keystroke.getSession() == null || 
+            keystroke.getSession().getSessionId() == null) {
+            throw new RuntimeException("Keystroke or its session information is missing");
+        }
+
+        Session session = sessionRepository.findById(keystroke.getSession().getSessionId())
+                .orElseThrow(() -> new RuntimeException("Session not found"));
+
+
+        Keystroke newKeystroke = new Keystroke(session, keystroke.getText(), keystroke.getAction());
+        keystrokeRepository.save(newKeystroke);
+
+        return newKeystroke; 
     }
-
-    Session session = sessionRepository.findById(keystroke.getSession().getSessionId())
-            .orElseThrow(() -> new RuntimeException("Session not found"));
-
-
-    Keystroke newKeystroke = new Keystroke(session, keystroke.getText(), keystroke.getAction());
-    keystrokeRepository.save(newKeystroke);
-
-    return newKeystroke; 
-}
 
 }

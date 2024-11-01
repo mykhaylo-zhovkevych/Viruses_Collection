@@ -14,10 +14,12 @@ public class Keystroke {
     @JoinColumn(name = "session_id", nullable = false)
     private Session session;
 
-    @Column(length = 255)
+    @Lob
+    @Column(columnDefinition = "MEDIUMTEXT")
     private String text; 
 
-    @Column(length = 50)
+    @Lob
+    @Column(columnDefinition = "MEDIUMTEXT")
     private String action; 
 
     @Column(nullable = false)
