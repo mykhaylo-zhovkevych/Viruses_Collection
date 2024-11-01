@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Test mit STOMP</title>
+    <script src="https://cdn.jsdelivr.net/npm/sockjs-client/dist/sockjs.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/stompjs/lib/stomp.min.js"></script>
+</head>
+<body>
+    <h1>WebSocket Test mit STOMP</h1>
+    <button id="createSession">Session erstellen</button>
+    <button id="sendKeystroke" disabled>Keystroke senden</button>
+    <p id="response"></p>
+    <p id="sessionIdDisplay"></p> <!-- Anzeige der Session-ID -->
+
+    <script>
+        let stompClient = null;
+        let currentSessionId = null;
+
+        function connect() {
+            const socket = new SockJS('http://localhost:8080/ws'); // Verbindung zum WebSocket-Server
+            stompClient = Stomp.over(socket);
+
+            stompClient.connect({}, function(frame) {
+                console.log('Connected: ' + frame);
+                stompClient.subscribe('/topic/keystrokes', function(keystroke) {
+                    document.getElementById('response').innerText = "Keystroke erhalten: " + JSON.parse(keystroke.body).text;
+                });
+            });
+        }
+
+        // Session erstellen
+        document.getElementById('createSession').addEventListener('click', function() {
+            fetch('http://localhost:8080/createSession?userId=1') // Ersetze "1" mit der Benutzer-ID
+                .then(response => response.text())
+                .then(sessionId => {
+                    currentSessionId = sessionId; // Setze die aktuelle Session-ID
+                    document.getElementById('sessionIdDisplay').innerText = "Aktuelle Session-ID: " + currentSessionId;
+                    document.getElementById('sendKeystroke').disabled = false; // Aktiviere den Keystroke-Button
+                })
+                .catch(error => console.error('Fehler beim Erstellen der Session:', error));
+        });
+
+        // Keystroke senden
+        document.getElementById('sendKeystroke').addEventListener('click', function() {
+            if (currentSessionId) {
+                const keystrokeData = {
+                    session: { sessionId: 1 }, // Füge die Session-ID als 'sessionId' hinzu
+                    text: "Hallo, Welt!",
+                    action: "typed"
+                };
+                stompClient.send("/app/keystroke", {}, JSON.stringify(keystrokeData));
+            }
+        });
+
+        // Verbindung beim Laden der Seite herstellen
+        window.onload = connect;
+    </script>
+</body>
+</html>
