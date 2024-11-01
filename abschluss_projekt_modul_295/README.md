@@ -11,6 +11,7 @@
 4. [Realisieren](#realisieren)
    - [Komponenten](#komponenten)
      - [Desktop-Anwendung](#desktop-anwendung)
+     - [Server](#server)
      - [Datenbank](#datenbank)
      - [Web-App](#web-app)
    - [Design](#design)
@@ -57,7 +58,19 @@ Eine Desktop-Taschenrechner-App, die in Windows und Linux funktioniert, hat nich
 
 ## Planen
 
-Der Arbeitsplan enthält sinnvolle Arbeitspakete und Aufwandsschätzungen.
+### Arbeitsplan und Arbeitspakete mit Aufwandsschätzungen.
+
+| Datum       | Zeit   | Arbeitspaket         | Erwartete Aufgabe                                | Erledigte Aufgabe                                      |
+|-------------|--------|----------------------|--------------------------------------------------|--------------------------------------------------------|
+| 29.10.2024                | 3 Std   | Projektinitialisierung                     | Leere Projekte für Frontend und Backend erstellen, MainApp mit Dateispeicherung einrichten | Leere Projekte für Frontend und Backend erstellt, MainApp speichert Daten in `Keys.txt` |
+| 30.10.2024  31.10.2024  | 2 Std   | Planung                                    | Aufgaben abschätzen, Theorie wiederholen/vertiefen, UML-Diagramme/Datenmodelle und Struktur planen | Aufgaben grob geschätzt, Struktur in UML-Diagrammen/Datenmodellen festgelegt |
+| 01.11.2024                | --- Std  | WebSocket-Server                           | Spring Boot WebSocket-Server erstellen, grundlegende Verbindung testen | WebSocket-Server erstellt, Verbindung getestet                 |
+| 01.11.2024  05.11.2024   | --- Std | MainApp-Datenversendung umsetzen          | Die MainApp sendet die Daten an den WebSocket-Server reibungslos und die Daten werden in der richtigen Form gespeichert | -------------------------------                               |
+| 01.11.2024  02.11.2024   | --- Std | Datenmodellierung umsetzen                 | Datenmodelle für Benutzer und Sitzungen mit Spring Boot realisieren  | Datenmodelle in Spring entworfen und dokumentiert            |
+| 03.11.2024                | --- Std | Frontend-Verbindung                        | Einfache WebSocket-UI zur Anzeige empfangener Daten                 | -------------------------------                               |
+| 05.11.2024                | --- Std | Dokumentation                              | Die Dokumentation fertigstellen und alles auf mögliche Verbesserungen prüfen, sei es technisch oder textlich | -------------------------------                               |
+
+---
 
 ### User Stories und Akzeptanzkriterien
 
@@ -116,6 +129,77 @@ Der Arbeitsplan enthält sinnvolle Arbeitspakete und Aufwandsschätzungen.
 #### Desktop-Anwendung
 
 *Hier wird die Desktop-Anwendung beschrieben.*
+
+#### Server
+
+Die Websocket-Server muss eine zwischenrolle innerhalb Desktop-Anwendung und Web-App spielen und ermöglicht eine effiziente und sofortige Datenübertragung zwischen meiner Desktop-Anwendung und dem Server. Dann es soll die Daten persistent gespeichert werden und in Web App darstellt.
+
+Innere Struktur:
+
+## 1. `config/`
+
+Dieses Package enthält die Konfigurationsklassen, die den WebSocket-Server einrichten und anpassen. Es legt fest, wie der WebSocket-Server funktioniert und welche Endpunkte verfügbar sind.
+
+- **`WebSocketConfig.java`**:  
+  - Richtet die WebSocket-Verbindung ein.
+  - Definiert den WebSocket-Endpunkt, über den die Desktop-Anwendung und die Web-App mit dem Server kommunizieren können.
+  - Aktiviert und konfiguriert den Nachrichtenbroker, der Nachrichten weiterleitet.
+  - **Beispiel**: Die Annotation `@EnableWebSocketMessageBroker` signalisiert Spring Boot, dass WebSocket-Nachrichten unterstützt werden.
+
+## 2. `controller/`
+
+Das `controller` Package beinhaltet die "Controller"-Klassen, die Nachrichten von Clients empfangen und verarbeiten.
+
+- **`WebSocketController.java`**:  
+  - Nimmt eingehende Nachrichten entgegen und entscheidet, wie sie weitergeleitet werden.
+  - Verwendet `@MessageMapping`, um bestimmte Methoden auf definierte Nachrichtenkanäle reagieren zu lassen.
+  - **Beispiel**: Eine Methode in dieser Klasse könnte eine eingehende Nachricht empfangen und an alle verbundenen Clients weiterleiten.
+
+## 3. `handler/`
+
+Hier liegen die benutzerdefinierten Handler-Klassen, die spezielle Logik für die Verarbeitung von Nachrichten implementieren.
+
+- **`CustomWebSocketHandler.java`**:  
+  - Reagiert auf eingehende Nachrichten und ermöglicht individuelle Verarbeitung.
+  - Enthält Logik, um Nachrichten zu speichern oder zu verändern, bevor sie weitergeleitet werden.
+  - **Beispiel**: Die Klasse könnte Nachrichten filtern oder validieren, bevor sie anderen Clients zur Verfügung gestellt werden.
+
+## 4. `listener/`
+
+Dieses Package enthält Klassen, die auf spezifische Ereignisse wie Tastenkombinationen reagieren.
+
+- **`KeyEventListener.java`**:  
+  - Dieser Listener reagiert auf definierte Tastenkombinationen (z. B. `Enter + C`) und führt eine Aktion aus, wie das Verschieben des Eingabefokus auf ein bestimmtes Datenfeld.
+  - **Beispiel**: Wenn die Tastenkombination `Enter + C` gedrückt wird, wird die Nachricht in das Feld für `action` und nicht in `text` gespeichert.
+
+## 5. `model/`
+
+Das `model` Package definiert die Datenstrukturen, die im gesamten Server verwendet werden.
+
+- **`Message.java`**:  
+  - Repräsentiert eine Nachricht mit Feldern wie `content` (Nachrichtentext) und `sender` (Absender).
+  - Dieses Modell hilft dabei, die Struktur und die benötigten Felder jeder Nachricht zu definieren.
+  - **Beispiel**: Beim Senden einer Nachricht wird ein `Message`-Objekt erstellt und weiterverarbeitet.
+
+## 6. `repository/`
+
+Das `repository` Package enthält Klassen, die sich um die Interaktion mit der Datenbank kümmern und Daten persistent speichern.
+
+- **`MessageRepository.java`**:  
+  - Bietet Methoden, um Nachrichten in einer Datenbank zu speichern, zu lesen und zu löschen.
+  - Durch die Verwendung eines `Repository`-Interfaces, z. B. mit Spring Data JPA, können Nachrichten dauerhaft gespeichert und bei Bedarf abgerufen werden.
+  - **Beispiel**: `save()`-Methoden zum Speichern von Nachrichten oder `findAll()`-Methoden zum Abrufen aller Nachrichten für die Web-App.
+
+## 7. `service/`
+
+Das `service` Package enthält die Geschäftslogik der Anwendung. Hier werden eingehende Daten verarbeitet, bevor sie weitergeleitet werden.
+
+- **`MessageService.java`**:  
+  - Beinhaltet Methoden zur Verwaltung und Verarbeitung von Nachrichten, z. B. zur Überprüfung oder Modifikation vor der Weiterleitung.
+  - Kann zur Validierung oder Anpassung von Nachrichten verwendet werden.
+  - **Beispiel**: Die `MessageService`-Klasse kann eine Nachricht formatieren oder filtern, bevor sie an den Controller weitergegeben und an die Clients verteilt wird.
+
+---
 
 #### Datenbank
 
