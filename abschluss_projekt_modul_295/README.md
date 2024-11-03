@@ -14,7 +14,6 @@
      - [Server](#server)
      - [Datenbank](#datenbank)
      - [Web-App](#web-app)
-   - [Design](#design)
    - [Klassendiagramm und Datenmodelle](#klassendiagramm-und-datenmodelle)
    - [API-Dokumentation](#api-dokumentation)
 5. [Kontrollieren](#kontrollieren)
@@ -64,9 +63,9 @@ Eine Desktop-Taschenrechner-App, die in Windows und Linux funktioniert, hat nich
 |-------------|--------|----------------------|--------------------------------------------------|--------------------------------------------------------|
 | 29.10.2024                | 3 Std   | Projektinitialisierung                     | Leere Projekte für Frontend und Backend erstellen, MainApp mit Dateispeicherung einrichten | Leere Projekte für Frontend und Backend erstellt, MainApp speichert Daten in `Keys.txt` |
 | 30.10.2024  31.10.2024  | 2 Std   | Planung                                    | Aufgaben abschätzen, Theorie wiederholen/vertiefen, UML-Diagramme/Datenmodelle und Struktur planen | Aufgaben grob geschätzt, Struktur in UML-Diagrammen/Datenmodellen festgelegt |
-| 01.11.2024                | --- Std  | WebSocket-Server                           | Spring Boot WebSocket-Server erstellen, grundlegende Verbindung testen | WebSocket-Server erstellt, Verbindung getestet                 |
-| 01.11.2024  05.11.2024   | --- Std | MainApp-Datenversendung umsetzen          | Die MainApp sendet die Daten an den WebSocket-Server reibungslos und die Daten werden in der richtigen Form gespeichert | -------------------------------                               |
-| 01.11.2024  02.11.2024   | --- Std | Datenmodellierung umsetzen                 | Datenmodelle für Benutzer und Sitzungen mit Spring Boot realisieren  | Datenmodelle in Spring entworfen und dokumentiert            |
+| 01.11.2024                | 4 Std  | WebSocket-Server                           | Spring Boot WebSocket-Server erstellen, grundlegende Verbindung testen | WebSocket-Server erstellt, Verbindung getestet                 |
+| 01.11.2024  05.11.2024   | 4 Std | MainApp-Datenversendung umsetzen          | Die MainApp sendet die Daten an den WebSocket-Server reibungslos und die Daten werden in der richtigen Form gespeichert | Die Daten werden alle 15 Minuten mit Filterfunktion und Sendezeit gesendet.              |
+| 01.11.2024  02.11.2024   | 1 Std | Datenmodellierung umsetzen                 | Datenmodelle für Benutzer und Sitzungen mit Spring Boot realisieren  | Datenmodelle in Spring entworfen und dokumentiert            |
 | 03.11.2024                | --- Std | Frontend-Verbindung                        | Einfache WebSocket-UI zur Anzeige empfangener Daten                 | -------------------------------                               |
 | 05.11.2024                | --- Std | Dokumentation                              | Die Dokumentation fertigstellen und alles auf mögliche Verbesserungen prüfen, sei es technisch oder textlich | -------------------------------                               |
 
@@ -116,9 +115,16 @@ Eine Desktop-Taschenrechner-App, die in Windows und Linux funktioniert, hat nich
 
 ---
 
-## Entscheiden
+## Entscheidungen
 
-*Hier werden Entscheidungen über die Umsetzung getroffen.*
+Die wichtigsten Entscheidungen, die ich während der Programmierung getroffen habe, sind folgende:
+
+- **Desktop-Anwendung**: Ich habe eine Bibliothek verwendet, die einen zuverlässigen Zugriff auf die Tastatur des Clients ermöglicht. Mit Java oder JS allein wäre dies viel komplizierter zu realisieren gewesen. Für den Datentransfer habe ich Methoden von SockJS verwendet.
+
+- **Server**: Für die Server-Kommunikation habe ich mich für eine STOMP-WebSocket-Verbindung entschieden, zusammen mit JPA für die Datenverbindung. Dadurch war es nicht notwendig, separate SQL-Skripte zu schreiben.
+
+- **Web-App**: Für die Web-Anwendung habe ich React eingesetzt, um eine komfortable Benutzererfahrung zu schaffen.
+
 
 ---
 
@@ -128,11 +134,15 @@ Eine Desktop-Taschenrechner-App, die in Windows und Linux funktioniert, hat nich
 
 #### Desktop-Anwendung
 
-*Hier wird die Desktop-Anwendung beschrieben.*
+Die `CalculatorApp` spielt die Hauptrolle im gesamten Projekt und realisiert die Kernfunktionen.
+
+Ursprünglich wollte ich die App in Java entwickeln, aber aufgrund fehlender Abhängigkeiten für STOMP habe ich mich entschieden, alles mit JavaScript und Electron umzusetzen. Dabei verwende ich die KeyListener-Bibliothek und SockJS, die die Verbindung ermöglichen.
+
 
 #### Server
 
-Die Websocket-Server muss eine zwischenrolle innerhalb Desktop-Anwendung und Web-App spielen und ermöglicht eine effiziente und sofortige Datenübertragung zwischen meiner Desktop-Anwendung und dem Server. Dann es soll die Daten persistent gespeichert werden und in Web App darstellt.
+Der WebSocket-Server soll eine Vermittlungsrolle zwischen der Desktop-Anwendung und der Web-App spielen und eine effiziente, sofortige Datenübertragung zwischen der Desktop-Anwendung und dem Server ermöglichen. Die Daten sollen dann persistent gespeichert und in der Web-App dargestellt werden.
+
 
 Innere Struktur:
 
@@ -155,6 +165,7 @@ Das `controller` Package beinhaltet die "Controller"-Klassen, die Nachrichten vo
   - Verwendet `@MessageMapping`, um bestimmte Methoden auf definierte Nachrichtenkanäle reagieren zu lassen.
   - **Beispiel**: Eine Methode in dieser Klasse könnte eine eingehende Nachricht empfangen und an alle verbundenen Clients weiterleiten.
 
+// **not implemented**
 ## 3. `handler/`
 
 Hier liegen die benutzerdefinierten Handler-Klassen, die spezielle Logik für die Verarbeitung von Nachrichten implementieren.
@@ -164,6 +175,7 @@ Hier liegen die benutzerdefinierten Handler-Klassen, die spezielle Logik für di
   - Enthält Logik, um Nachrichten zu speichern oder zu verändern, bevor sie weitergeleitet werden.
   - **Beispiel**: Die Klasse könnte Nachrichten filtern oder validieren, bevor sie anderen Clients zur Verfügung gestellt werden.
 
+// **not implemented**
 ## 4. `listener/`
 
 Dieses Package enthält Klassen, die auf spezifische Ereignisse wie Tastenkombinationen reagieren.
@@ -203,23 +215,23 @@ Das `service` Package enthält die Geschäftslogik der Anwendung. Hier werden ei
 
 #### Datenbank
 
-*Hier wird die Datenbank beschrieben.*
+Die gesamte Struktur der Datenbank ist relativ einfach und besteht aus drei Komponenten: **User**, **Session** und **Keystroke**. Diese ermöglichen eine effiziente Datenspeicherung.
+
 
 #### Web-App
 
-*Hier wird die Web-App beschrieben.*
+Innere Struktur von Web-App
 
----
+...
 
-### Design
-
-*Hier wird das Design des Projekts beschrieben.*
 
 ---
 
 ### Klassendiagramm und Datenmodelle
 
-*Hier werden Klassendiagramme und Datenmodelle vorgestellt.*
+![Datenmodelle](MySQL.png)
+
+
 
 ---
 
