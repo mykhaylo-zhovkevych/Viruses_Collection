@@ -3,6 +3,9 @@ package backend.model;
 import jakarta.persistence.*;
 import java.util.Date;
 
+/**
+ * Diese Klasse repräsentiert eine Sitzung, die einem Benutzer zugeordnet ist.
+ */
 @Entity
 public class Session {
 
@@ -20,11 +23,19 @@ public class Session {
     @Column
     private Date endTime; 
 
+     /**
+     * Standardkonstruktor, der die Startzeit auf das aktuelle Datum setzt.
+     */
     public Session() {
         this.startTime = new Date(); 
         this.endTime = null; 
     }
 
+    /**
+     * Konstruktor, der eine neue Sitzung mit dem angegebenen Benutzer erstellt.
+     *
+     * @param user der Benutzer, der mit dieser Sitzung verknüpft ist
+     */
     public Session(User user) {
         this.user = user;
         this.startTime = new Date();

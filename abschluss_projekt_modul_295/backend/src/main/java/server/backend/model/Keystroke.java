@@ -3,6 +3,9 @@ package backend.model;
 import jakarta.persistence.*;
 import java.util.Date;
 
+/**
+ * Diese Klasse repräsentiert ein Tastenereignis, das mit einer Sitzung verknüpft ist.
+ */
 @Entity
 public class Keystroke {
 
@@ -25,10 +28,20 @@ public class Keystroke {
     @Column(nullable = false)
     private Date sentDate; 
 
+     /**
+     * Standardkonstruktor, der das gesendete Datum auf das aktuelle Datum setzt.
+     */
     public Keystroke() {
         this.sentDate = new Date(); 
     }
 
+    /**
+     * Konstruktor, der eine neue Keystroke-Instanz mit den angegebenen Werten erstellt.
+     *
+     * @param session die Sitzung, mit der dieses Tastenereignis verknüpft ist
+     * @param text der Text, der eingegeben wurde
+     * @param action die durchgeführte Aktion
+     */
     public Keystroke(Session session, String text, String action) {
         this.session = session;
         this.text = text;

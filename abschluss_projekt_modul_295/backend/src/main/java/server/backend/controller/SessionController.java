@@ -10,9 +10,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import jakarta.servlet.http.HttpSession;
 
+/**
+ * Der Controller für die Sitzungsverwaltung.
+ * Dieser Controller ermöglicht die Erstellung und den Abruf von Sitzungen
+ * über RESTful HTTP-Anfragen.
+ */
 @RestController
 public class SessionController {
 
@@ -22,7 +26,19 @@ public class SessionController {
     @Autowired
     private UserRepository userRepository; 
 
-    // Nur GET-Anfragen an diese URL akzeptiert.
+    /**
+     * Erstellt eine neue Sitzung für den angegebenen Benutzer.
+     *
+     * Diese Methode verarbeitet GET-Anfragen an den 
+     * Endpunkt "/createSession". Sie nimmt die Benutzer-ID 
+     * als Parameter entgegen, erstellt eine neue Sitzung 
+     * und speichert sie. Bei Erfolg wird die Benutzer-ID 
+     * zurückgegeben, andernfalls wird ein Fehlerstatus gesendet.
+     *
+     * @param userId die ID des Benutzers, für den die Sitzung erstellt werden soll
+     * @return eine ResponseEntity mit der Benutzer-ID bei Erfolg 
+     *         oder einem Fehlerstatus
+     */
     @GetMapping("/createSession")
     public ResponseEntity<Object> createSession(@RequestParam Long userId) {
         try {
@@ -42,6 +58,16 @@ public class SessionController {
         }
     }
 
+    /**
+     * Gibt die Benutzer-ID der aktuellen Sitzung zurück.
+     *
+     * Diese Methode verarbeitet GET-Anfragen an den 
+     * Endpunkt "/getSession". Sie verwendet das HttpSession-Objekt, 
+     * um die Benutzer-ID aus der aktuellen Sitzung abzurufen.
+     *
+     * @param session die aktuelle HTTP-Sitzung
+     * @return die Benutzer-ID der aktuellen Sitzung
+     */
     @GetMapping("/getSession")
     public Long getSession(HttpSession session) {
         return (Long) session.getAttribute("userId"); 

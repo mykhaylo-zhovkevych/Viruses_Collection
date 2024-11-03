@@ -9,8 +9,14 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 
+/**
+ * Der Controller für die Verarbeitung von Keystroke-Nachrichten über STOMP.
+ * Dieser Controller empfängt Keystroke-Objekte über STOMP-WebSocket-Nachrichten
+ * und speichert sie in der Datenbank.
+ */
 @Controller
 public class KeystrokeController {
+
 
     @Autowired
     private KeystrokeRepository keystrokeRepository;
@@ -18,6 +24,20 @@ public class KeystrokeController {
     @Autowired
     private SessionRepository sessionRepository;
 
+    /**
+     * Verarbeitet eingehende Keystroke-Nachrichten.
+     *
+     * Diese Methode wird aufgerufen, wenn eine Nachricht an den 
+     * Endpunkt "/keystroke" gesendet wird. Sie speichert das 
+     * empfangene Keystroke-Objekt in der Datenbank und sendet 
+     * es an alle Abonnenten des Topics "/topic/keystrokes".
+     *
+     * @param keystroke das empfangene Keystroke-Objekt
+     * @return das neu gespeicherte Keystroke-Objekt
+     * @throws RuntimeException wenn das Keystroke-Objekt oder 
+     *                          die zugehörige Session-Information 
+     *                          fehlt oder die Session nicht gefunden wird
+     */
     @MessageMapping("/keystroke")
     @SendTo("/topic/keystrokes")
     public Keystroke handleKeystroke(Keystroke keystroke) {

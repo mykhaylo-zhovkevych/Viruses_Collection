@@ -10,12 +10,29 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * Der Controller für die Benutzerverwaltung.
+ * Dieser Controller ermöglicht die Erstellung neuer Benutzer
+ * über RESTful HTTP-Anfragen.
+ */
 @RestController
 public class UserController {
 
     @Autowired
     private UserRepository userRepository;
 
+    /**
+     * Erstellt einen neuen Benutzer.
+     *
+     * Diese Methode verarbeitet POST-Anfragen an den 
+     * Endpunkt "/createUser". Sie nimmt ein User-Objekt 
+     * entgegen, speichert es in der Datenbank und gibt eine 
+     * entsprechende Antwort zurück.
+     *
+     * @param user das zu erstellende User-Objekt
+     * @return eine ResponseEntity mit einer Bestätigungsmeldung
+     *         und dem neu erstellten Benutzer-ID oder einem Fehlerstatus
+     */
     @PostMapping("/createUser")
     public ResponseEntity<String> createUser(@RequestBody User user) {
         try {
