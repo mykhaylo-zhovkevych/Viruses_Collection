@@ -22,6 +22,7 @@ public class SessionController {
     @Autowired
     private UserRepository userRepository; 
 
+    // Nur GET-Anfragen an diese URL akzeptiert.
     @GetMapping("/createSession")
     public ResponseEntity<Object> createSession(@RequestParam Long userId) {
         try {
