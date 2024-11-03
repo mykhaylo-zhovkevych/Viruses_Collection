@@ -49,6 +49,10 @@ public class Keystroke {
         this.sentDate = new Date();
     }
 
+    public void setKeystrokeId(Long keystrokeId) {
+        this.keystrokeId = keystrokeId;
+    }
+
     public Long getKeystrokeId() {
         return keystrokeId;
     }

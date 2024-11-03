@@ -42,11 +42,14 @@ public class Session {
         this.endTime = null; 
     }
 
+    public void setSessionId(Long sessionId) {
+        this.sessionId = sessionId;
+    }
  
     public Long getSessionId() {
         return sessionId;
     }
-
+    
     public User getUser() {
         return user;
     }

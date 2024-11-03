@@ -3,14 +3,15 @@ package backend.controller;
 import backend.model.Session;
 import backend.model.User;
 import backend.service.SessionService;
-import backend.repository.UserRepository; 
+import backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import jakarta.servlet.http.HttpSession;
+import java.util.List;
+
 
 /**
  * Der Controller für die Sitzungsverwaltung.
@@ -61,9 +62,8 @@ public class SessionController {
     /**
      * Gibt die Benutzer-ID der aktuellen Sitzung zurück.
      *
-     * Diese Methode verarbeitet GET-Anfragen an den 
-     * Endpunkt "/getSession". Sie verwendet das HttpSession-Objekt, 
-     * um die Benutzer-ID aus der aktuellen Sitzung abzurufen.
+     * Diese Methode verarbeitet GET-Anfragen an den Endpunkt "/getSession".
+     * Sie verwendet das HttpSession-Objekt, um die Benutzer-ID aus der aktuellen Sitzung abzurufen.
      *
      * @param session die aktuelle HTTP-Sitzung
      * @return die Benutzer-ID der aktuellen Sitzung
@@ -71,5 +71,35 @@ public class SessionController {
     @GetMapping("/getSession")
     public Long getSession(HttpSession session) {
         return (Long) session.getAttribute("userId"); 
+    }
+
+    // Neuimplementierung
+
+    /**
+     * Gibt alle Sitzungen zurück.
+     *
+     * Diese Methode verarbeitet GET-Anfragen an den Endpunkt "/api/sessions".
+     * Sie gibt eine Liste aller Sitzungen zurück.
+     *
+     * @return eine Liste aller Session-Objekte
+     */
+    @GetMapping("/api/sessions")
+    public List<Session> getAllSessions() {
+        return sessionService.getAllSessions();
+    }
+
+    /**
+     * Löscht eine Sitzung anhand der Sitzungs-ID.
+     *
+     * Diese Methode verarbeitet DELETE-Anfragen an den Endpunkt "/api/sessions/{sessionId}".
+     * Sie löscht die Sitzung mit der angegebenen ID und gibt eine leere Antwort zurück.
+     *
+     * @param sessionId die ID der zu löschenden Sitzung
+     * @return ResponseEntity ohne Inhalt (204 No Content) bei erfolgreichem Löschen
+     */
+    @DeleteMapping("/api/sessions/{sessionId}")
+    public ResponseEntity<Void> deleteSession(@PathVariable Long sessionId) {
+        sessionService.deleteSession(sessionId); // Angenommen, deleteSession ist die Methode zum Löschen
+        return ResponseEntity.noContent().build();
     }
 }
