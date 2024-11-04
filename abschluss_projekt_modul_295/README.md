@@ -61,13 +61,13 @@ Eine Desktop-Taschenrechner-App, die in Windows und Linux funktioniert, hat nich
 
 | Datum       | Zeit   | Arbeitspaket         | Erwartete Aufgabe                                | Erledigte Aufgabe                                      |
 |-------------|--------|----------------------|--------------------------------------------------|--------------------------------------------------------|
-| 29.10.2024                | 3 Std   | Projektinitialisierung                     | Leere Projekte für Frontend und Backend erstellen, MainApp mit Dateispeicherung einrichten | Leere Projekte für Frontend und Backend erstellt, MainApp speichert Daten in `Keys.txt` |
-| 30.10.2024  31.10.2024  | 2 Std   | Planung                                    | Aufgaben abschätzen, Theorie wiederholen/vertiefen, UML-Diagramme/Datenmodelle und Struktur planen | Aufgaben grob geschätzt, Struktur in UML-Diagrammen/Datenmodellen festgelegt |
-| 01.11.2024                | 4 Std  | WebSocket-Server                           | Spring Boot WebSocket-Server erstellen, grundlegende Verbindung testen | WebSocket-Server erstellt, Verbindung getestet                 |
-| 01.11.2024  05.11.2024   | 4 Std | MainApp-Datenversendung umsetzen          | Die MainApp sendet die Daten an den WebSocket-Server reibungslos und die Daten werden in der richtigen Form gespeichert | Die Daten werden alle 15 Minuten mit Filterfunktion und Sendezeit gesendet.              |
-| 01.11.2024  02.11.2024   | 1 Std | Datenmodellierung umsetzen                 | Datenmodelle für Benutzer und Sitzungen mit Spring Boot realisieren  | Datenmodelle in Spring entworfen und dokumentiert            |
-| 03.11.2024                | --- Std | Frontend-Verbindung                        | Einfache WebSocket-UI zur Anzeige empfangener Daten                 | -------------------------------                               |
-| 05.11.2024                | --- Std | Dokumentation                              | Die Dokumentation fertigstellen und alles auf mögliche Verbesserungen prüfen, sei es technisch oder textlich | -------------------------------                               |
+| 29.10.2024                | ca. 4 Std   | Projektinitialisierung                     | Leere Projekte für Frontend und Backend erstellen, MainApp mit Dateispeicherung einrichten | Leere Projekte für Frontend und Backend erstellt, MainApp speichert Daten in `Keys.txt` |
+| 30.10.2024  31.10.2024  | ca. 3 Std   | Planung                                    | Aufgaben abschätzen, Theorie wiederholen/vertiefen, UML-Diagramme/Datenmodelle und Struktur planen | Aufgaben grob geschätzt, Struktur in UML-Diagrammen/Datenmodellen festgelegt |
+| 01.11.2024                | ca. 6 Std  | WebSocket-Server                           | Spring Boot WebSocket-Server erstellen, grundlegende Verbindung testen | WebSocket-Server erstellt, Verbindung getestet                 |
+| 01.11.2024  05.11.2024   | ca. 5 Std | MainApp-Datenversendung umsetzen          | Die MainApp sendet die Daten an den WebSocket-Server reibungslos und die Daten werden in der richtigen Form gespeichert | Die Daten werden alle 15 Minuten mit Filterfunktion und Sendezeit gesendet.              |
+| 01.11.2024  02.11.2024   | ca. 2 Std | Datenmodellierung umsetzen                 | Datenmodelle für Benutzer und Sitzungen mit Spring Boot realisieren  | Datenmodelle in Spring entworfen und dokumentiert            |
+| 03.11.2024                | ca. 4 Std | Frontend-Verbindung                        | Einfache WebSocket-UI zur Anzeige empfangener Daten                 | Funktionen für eine bessere REST-API hinzugefügt, um den Workflow mit Daten zu verbessern.                             |
+| 05.11.2024                | ca. 3 Std | Dokumentation                              | Die Dokumentation fertigstellen und alles auf mögliche Verbesserungen prüfen, sei es technisch oder textlich | Die Doku wurde überarbeitet und alle notwendigen Elemente wurden geprüft und hinzugefügt.                               |
 
 ---
 
@@ -217,14 +217,16 @@ Das `service` Package enthält die Geschäftslogik der Anwendung. Hier werden ei
 
 #### Datenbank
 
-Die gesamte Struktur der Datenbank ist relativ einfach und besteht aus drei Komponenten: **User**, **Session** und **Keystroke**. Diese ermöglichen eine effiziente Datenspeicherung.
+Die gesamte Struktur der Datenbank ist relativ einfach und besteht aus drei Komponenten: `User`, `Session` und `Keystroke`. Diese ermöglichen eine effiziente Datenspeicherung.
 
 
 #### Web-App
 
-Innere Struktur von Web-App
+Das Frontend besteht aus drei Hauptkomponenten, jedoch keiner zentralen `App.jsx`. Diese Komponenten sind `Dashboard.jsx`, `KeystrokeList.jsx` und `SessionList.jsx`. Die Daten werden mithilfe von Axios abgerufen.
 
-...
+Es gibt eine Benutzerliste, aus der der Benutzer einen User auswählen kann. Wird ein Benutzer ausgewählt, wird er zur `SessionList` weitergeleitet, in der die Datensätze für jede Sitzung gespeichert und angezeigt werden.
+
+Der Benutzer kann eine Sitzung löschen, Datensätze bearbeiten oder löschen und auch neue Benutzer erstellen, löschen, bearbeiten oder als Liste abrufen. Im Frontend ist allerdings nicht alles von dieser Funktionalität umgesetzt worden.
 
 
 ---
@@ -232,7 +234,6 @@ Innere Struktur von Web-App
 ### Klassendiagramm und Datenmodelle
 
 ![Datenmodelle](MySQL.png)
-
 
 
 ---
