@@ -228,6 +228,9 @@ Es gibt eine Benutzerliste, aus der der Benutzer einen User auswählen kann. Wir
 
 Der Benutzer kann eine Sitzung löschen, Datensätze bearbeiten oder löschen und auch neue Benutzer erstellen, löschen, bearbeiten oder als Liste abrufen. Im Frontend ist allerdings nicht alles von dieser Funktionalität umgesetzt worden.
 
+![WEBAPP](../Web01.png)
+
+![WEBAPP](../Web02.png)
 
 ---
 
