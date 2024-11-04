@@ -17,7 +17,7 @@
    - [Klassendiagramm und Datenmodelle](#klassendiagramm-und-datenmodelle)
    - [API-Dokumentation](#api-dokumentation)
 5. [Kontrollieren](#kontrollieren)
-   - [Testplan](#testplan)
+   - [Testplan](#Testplan-und-manuelle-Test)
 6. [Auswerten](#auswerten)
    - [Installationsanleitung](#installationsanleitung)
    - [Ressourcen](#ressourcen)
