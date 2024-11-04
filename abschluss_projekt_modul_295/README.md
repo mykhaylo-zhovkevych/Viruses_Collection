@@ -134,6 +134,8 @@ Die wichtigsten Entscheidungen, die ich während der Programmierung getroffen ha
 
 #### Desktop-Anwendung
 
+![alt text](Taschenrechner.png)
+
 Die `CalculatorApp` spielt die Hauptrolle im gesamten Projekt und realisiert die Kernfunktionen.
 
 Ursprünglich wollte ich die App in Java entwickeln, aber aufgrund fehlender Abhängigkeiten für STOMP habe ich mich entschieden, alles mit JavaScript und Electron umzusetzen. Dabei verwende ich die KeyListener-Bibliothek und SockJS, die die Verbindung ermöglichen.
@@ -237,23 +239,67 @@ Innere Struktur von Web-App
 
 ### API-Dokumentation
 
-*Hier wird die API-Dokumentation beschrieben.*
+Die vollständige Dokumentation ist unter diesem Link verfügbar: [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html).
+
+## Ein paar Punkte zur REST API-Implementierung:
+
+1. Die REST API besteht aus zwei Teilen: Der erste Teil ist für die Frontend-Entwicklung gedacht und beginnt mit `api/...`. Der zweite Teil ist für die interne Kommunikation der Server entwickelt worden; diese Teile sind automatisiert und müssen im Frontend nicht eingesetzt oder verwendet werden.
+2. Das Backend ermöglicht alles, sei es: Laden von Daten, Erfassen von Daten, Editieren von Daten oder Löschen von Daten.
+
 
 ---
 
 ## Kontrollieren
 
-### Testplan
+### Testplan und manuelle Test
 
 *Hier werden Tests und Überprüfungen durchgeführt.*
+
+### Unit-Tests 
+
 
 ---
 
 ## Auswerten
 
-### Installationsanleitung
+# Installationsanleitung für Desktop App, Backend, Frontend
 
-*Hier wird die Installationsanleitung für das Projekt beschrieben.*
+## 1. Desktop App
+
+### 1.1. Repository klonen
+Ziehen Sie das Repository in Ihr lokales Verzeichnis.
+
+### 1.2. Node.js installieren
+Installieren Sie die neueste Version von Node.js, idealerweise Version 20 oder höher.
+
+### 1.3. Navigieren Sie zum richtigen Ordner
+Öffnen Sie das Terminal und navigieren Sie zu dem Ordner, in dem sich die Desktop-App befindet.
+
+### 1.4 Abhängigkeiten installieren => npm install electron fs path node-global-key-listener sockjs-client stompjs
+
+### 1.5. package.json konfigurieren => npm init -y
+```bash
+{
+  "name": "calculatorapp",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "electron": "^VERSION",
+    "fs": "^VERSION",
+    "path": "^VERSION",
+    "node-global-key-listener": "^VERSION",
+    "sockjs-client": "^VERSION",
+    "stompjs": "^VERSION"
+  }
+}
+```
+
+### 1.6. App starten => npm start
+
+
 
 ### Ressourcen
 
