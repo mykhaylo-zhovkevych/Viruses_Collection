@@ -19,7 +19,7 @@
 5. [Kontrollieren](#kontrollieren)
    - [Testplan](#Testplan-und-manuelle-Test)
 6. [Auswerten](#auswerten)
-   - [Installationsanleitung](#Installationsanleitung-für-Desktop-App,-Backend,-Frontend)
+   - [Installationsanleitung](#Installationsanleitung-für-Desktop-App-&-Backend-Frontend)
    - [Ressourcen](#ressourcen)
 
 ---
@@ -271,7 +271,7 @@ Die vollständige Dokumentation ist unter diesem Link verfügbar: [http://localh
 
 ## Auswerten
 
-### Installationsanleitung für Desktop App, Backend, Frontend
+### Installationsanleitung für Desktop App & Backend Frontend
 
 #### 1. Desktop App
 
