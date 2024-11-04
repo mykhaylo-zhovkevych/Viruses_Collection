@@ -19,7 +19,7 @@
 5. [Kontrollieren](#kontrollieren)
    - [Testplan](#Testplan-und-manuelle-Test)
 6. [Auswerten](#auswerten)
-   - [Installationsanleitung](#installationsanleitung)
+   - [Installationsanleitung](#Installationsanleitung-für-Desktop-App,-Backend,-Frontend)
    - [Ressourcen](#ressourcen)
 
 ---
