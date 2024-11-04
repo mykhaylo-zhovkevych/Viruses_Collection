@@ -6,7 +6,7 @@
    - [Projektidee](#projektidee)
 2. [Planen](#planen)
    - [User Stories und Akzeptanzkriterien](#user-stories-und-akzeptanzkriterien)
-   - [Arbeitsplan mit Arbeitspaketen und Aufwandsschätzungen](#arbeitsplan-mit-arbeitspaketen-und-aufwandsschätzungen)
+   - [Arbeitsplan mit Arbeitspaketen und Aufwandsschätzungen](#Arbeitsplan-und-Arbeitspakete-mit-Aufwandsschätzungen)
 3. [Entscheiden](#entscheiden)
 4. [Realisieren](#realisieren)
    - [Komponenten](#komponenten)
@@ -57,7 +57,7 @@ Eine Desktop-Taschenrechner-App, die in Windows und Linux funktioniert, hat nich
 
 ## Planen
 
-### Arbeitsplan und Arbeitspakete mit Aufwandsschätzungen.
+### Arbeitsplan und Arbeitspakete mit Aufwandsschätzungen
 
 | Datum       | Zeit   | Arbeitspaket         | Erwartete Aufgabe                                | Erledigte Aufgabe                                      |
 |-------------|--------|----------------------|--------------------------------------------------|--------------------------------------------------------|
