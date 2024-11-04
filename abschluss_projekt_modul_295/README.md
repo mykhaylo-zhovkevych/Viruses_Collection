@@ -241,7 +241,7 @@ Innere Struktur von Web-App
 
 Die vollständige Dokumentation ist unter diesem Link verfügbar: [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html).
 
-## Ein paar Punkte zur REST API-Implementierung:
+#### Ein paar Punkte zur REST API-Implementierung:
 
 1. Die REST API besteht aus zwei Teilen: Der erste Teil ist für die Frontend-Entwicklung gedacht und beginnt mit `api/...`. Der zweite Teil ist für die interne Kommunikation der Server entwickelt worden; diese Teile sind automatisiert und müssen im Frontend nicht eingesetzt oder verwendet werden.
 2. Das Backend ermöglicht alles, sei es: Laden von Daten, Erfassen von Daten, Editieren von Daten oder Löschen von Daten.
@@ -253,7 +253,16 @@ Die vollständige Dokumentation ist unter diesem Link verfügbar: [http://localh
 
 ### Testplan und manuelle Test
 
-*Hier werden Tests und Überprüfungen durchgeführt.*
+| Testfall-ID | Testfallbeschreibung                                          | Eingabedaten                            | Erwartetes Ergebnis                                           | Tatsächliches Ergebnis                                                                                                                                            | Status     |
+|-------------|---------------------------------------------------------------|-----------------------------------------|----------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|
+| TC-001      | Positiver Test: Datensammlung während der Nutzung             | Benutzer nutzt die Taschenrechner-App   | Die App erfasst und speichert die Tastatureingaben            | Die App registriert alle Eingaben korrekt, sendet die Daten und speichert sie als Textdatei im App-Verzeichnis.                                                   | Erledigt   |
+| TC-002      | Positiver Test: Anzeige der gesammelten Daten auf der Webseite | Administrator nutzt die Webseite        | Die Webseite zeigt die gesammelten Daten korrekt an           | Die Webseite zeigt alle verfügbaren Daten an, die der Server von den Clients erhält.                                                                               | Erledigt   |
+| TC-003      | Positiver Test: WebSocket-Verbindung zur Datenübertragung     | Anwendung startet                       | Die WebSocket-Verbindung wird erfolgreich hergestellt          | Der Server baut eine STOMP-Verbindung fehlerfrei mit verschiedenen Clients auf.                                                                                   | Erledigt   |
+| TC-004      | Negativer Test: Benutzerinteraktion ohne Internetverbindung   | Internetverbindung unterbrochen         | Die App zeigt eine Fehlermeldung an und speichert die Daten lokal | Die App zeigt im Terminal eine Meldung über die unterbrochene Internetverbindung und versucht, die Verbindung nach 15 Sekunden wiederherzustellen. Daten werden lokal in einer Datei gespeichert. | Erledigt   |
+| TC-005      | Negativer Test: Falsche Berechnung bei Rechenoperation      | Benutzer berechnet `0 / 0` | Die App zeigt eine Fehlermeldung „error“ oder ähnliches | Die App zeigt eine Fehlermeldung, sodass Benutzer weiss | Erledigt  |
+| TC-006      | Negativer Test: Fehlgeschlagene WebSocket/API-Verbindung      | Server nicht erreichbar                 | Die Anwendung zeigt eine Fehlermeldung über die Verbindungsprobleme | Eine Meldung über Verbindungsprobleme wird angezeigt, sowohl im Frontend, dass kein Benutzer gefunden wurde, als auch in der Desktop-App oder im Backend-Terminal. | Erledigt   |
+
+
 
 ### Unit-Tests 
 
@@ -262,22 +271,22 @@ Die vollständige Dokumentation ist unter diesem Link verfügbar: [http://localh
 
 ## Auswerten
 
-# Installationsanleitung für Desktop App, Backend, Frontend
+### Installationsanleitung für Desktop App, Backend, Frontend
 
-## 1. Desktop App
+#### 1. Desktop App
 
-### 1.1. Repository klonen
+##### 1.1. Repository klonen
 Ziehen Sie das Repository in Ihr lokales Verzeichnis.
 
-### 1.2. Node.js installieren
+##### 1.2. Node.js installieren
 Installieren Sie die neueste Version von Node.js, idealerweise Version 20 oder höher.
 
-### 1.3. Navigieren Sie zum richtigen Ordner
+##### 1.3. Navigieren Sie zum richtigen Ordner
 Öffnen Sie das Terminal und navigieren Sie zu dem Ordner, in dem sich die Desktop-App befindet.
 
-### 1.4 Abhängigkeiten installieren => npm install electron fs path node-global-key-listener sockjs-client stompjs
+##### 1.4 Abhängigkeiten installieren => npm install electron fs path node-global-key-listener sockjs-client stompjs
 
-### 1.5. package.json konfigurieren => npm init -y
+##### 1.5. package.json konfigurieren => npm init -y
 ```bash
 {
   "name": "calculatorapp",
@@ -297,9 +306,13 @@ Installieren Sie die neueste Version von Node.js, idealerweise Version 20 oder h
 }
 ```
 
-### 1.6. App starten => npm start
+#### 1.6. App starten => npm start
 
+#### 2. Backend
 
+#### 3. Fronted
+
+---
 
 ### Ressourcen
 
