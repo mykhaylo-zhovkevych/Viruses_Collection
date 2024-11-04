@@ -1,0 +1,43 @@
+.SessionList {
+    display: grid;
+    gap: 1rem;
+    padding: 2rem;
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.SessionList h2 {
+    font-size: 1.6rem;
+    color: #333;
+}
+
+.SessionList button {
+    padding: 0.5rem 1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-bottom: 1rem;
+}
+
+.SessionList button:hover {
+    background-color: #0056b3;
+}
+
+.SessionList table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.SessionList th, .SessionList td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.SessionList td:hover {
+    background-color: #f9f9ff;
+}
