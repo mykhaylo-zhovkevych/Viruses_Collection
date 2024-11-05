@@ -1,3 +1,4 @@
+---
 # Inhaltsverzeichnis
 
 1. [Informieren](#informieren)
@@ -261,7 +262,7 @@ Die vollständige Dokumentation ist unter diesem Link verfügbar: [http://localh
 #### Präludium
 Dieses manuelle Test & Testprotokoll dokumentiert die Ergebnisse der positiven und negativen Tests des Projkets. Die Tests decken alle wesentlichen Funktionen des Projekts und seiner Module ab.
 
-#### Test inklusive Testprotokol
+#### Manuelle Test inklusive Testprotokol
 **Datum:** 04.11.2024  
 **Tester:** Mykhaylo Zhovkevych
 
@@ -274,9 +275,21 @@ Dieses manuelle Test & Testprotokoll dokumentiert die Ergebnisse der positiven u
 | TC-005      | Negativer Test: Falsche Berechnung bei Rechenoperation      | Benutzer berechnet `0 / 0` | Die App zeigt eine Fehlermeldung „error“ oder ähnliches | Die App zeigt eine Fehlermeldung, sodass Benutzer weiss | Erledigt  |
 | TC-006      | Negativer Test: Fehlgeschlagene WebSocket/API-Verbindung      | Server nicht erreichbar                 | Die Anwendung zeigt eine Fehlermeldung über die Verbindungsprobleme | Eine Meldung über Verbindungsprobleme wird angezeigt, sowohl im Frontend, dass kein Benutzer gefunden wurde, als auch in der Desktop-App oder im Backend-Terminal. | Erledigt   |
 
+#### Testfälle mit curl-Skripten
+
+| Test-ID | Befehlen                                                    | Ergebnis          |
+|---------|----------------------------------------------------------|-------------------|
+| TC-001  | [image]                                        |      Alles funktioniert       |
+| TC-002  | `curl -X 'GET' \ 'http://localhost:8080/api/keystrokes' \ -H 'accept: */*'`  |  200 Alles funktioniert                 |
+| TC-003  | N/A die Verbindung wird immer mit unterschiedlich token erstellt, zu gehen: http://localhost:8080/ dort Js verbindet mit server immer     |  101 Alles funktioniert                 |
+| TC-004  | [image] |  Alles funktioniert                 |
+| TC-005  | die App öffnen 0 /0 ergibt NaN ` |    Alles funktioniert               |
+| TC-006  | [image]     | Alles funktioniert                  |
 
 
-### Unit-Tests 
+### JUnit-Tests 
+
+In der JUnit Test wurden die `/api/..` Endpoins getestet und noch ein paar Szenario mit Mockup gemacht. 
 
 
 ---
