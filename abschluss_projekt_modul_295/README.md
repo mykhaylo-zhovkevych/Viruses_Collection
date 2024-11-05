@@ -261,10 +261,9 @@ Die vollständige Dokumentation ist unter diesem Link verfügbar: [http://localh
 #### Präludium
 Dieses manuelle Test & Testprotokoll dokumentiert die Ergebnisse der positiven und negativen Tests des Projkets. Die Tests decken alle wesentlichen Funktionen des Projekts und seiner Module ab.
 
-
 #### Test inklusive Testprotokol
 **Datum:** 04.11.2024  
-**Tester:** Mykhaylo ZHovkevych
+**Tester:** Mykhaylo Zhovkevych
 
 | Testfall-ID | Testfallbeschreibung                                          | Eingabedaten                            | Erwartetes Ergebnis                                           | Tatsächliches Ergebnis                                                                                                                                            | Status     |
 |-------------|---------------------------------------------------------------|-----------------------------------------|----------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|
@@ -321,15 +320,45 @@ Installieren Sie die neueste Version von Node.js, idealerweise Version 20 oder h
 
 ##### 1.6. App starten => npm start
 
-#### 2. Backend
+#### 2. Backend-Installation
 
-##### 2.1. 
+##### 2.1. Java installieren
+Überprüfen Sie, ob Java Version 17 oder höher installiert ist:
+```bash
+   java -version
+```
+##### 2.2. Projekt aus dem Repository klonen
+Klonen Sie das Projekt von Ihrem Git-Repository:
+```bash
+git clone <Repository-URL>
+```
+Navigieren Sie anschliessend in das Backend-Verzeichnis:
+```bash
+cd <Projektverzeichnis>/Backend
+```
 
-##### 2.2. 
+##### 2.3. MySQl User, Datenbank und `application.properties`
+Benutzer mit allen Berechtigungen erstellen und die Konfigurationsdatei so konfigurieren, dass das Backend die Daten dauerhaft speichern kann.
+```bash
+spring.datasource.url=jdbc:mysql://localhost:3306/<datenbankname>
+spring.datasource.username=<benutzername>
+spring.datasource.password=<passwort>
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+```
 
-##### 2.3. 
+##### 2.4. Abhängigkeiten herunterladen und Backend starten
+Überprüfen Sie, ob Maven installiert ist:
+```bash
+mvn -version
+```
+Laden Sie die Abhängigkeiten herunter und starten Sie das Backend mit folgendem Befehl:
+```bash
+mvn spring-boot:run
+```
 
-##### 2.4. 
+##### 2.5. Backend ohne Frontend oder Desktop-App verwenden
+Das Backend ist so konfiguriert, dass es unabhängig von einer Frontend- oder Desktop-App getestet werden kann. Öffnen Sie einfach Ihren Webbrowser und gehen Sie zu: http://localhost:8080
 
 
 #### 3. Fronted
