@@ -135,7 +135,7 @@ Die wichtigsten Entscheidungen, die ich während der Programmierung getroffen ha
 
 #### Desktop-Anwendung
 
-![alt text](Taschenrechner.png)
+![alt text](imgs/Taschenrechner.png)
 
 Die `CalculatorApp` spielt die Hauptrolle im gesamten Projekt und realisiert die Kernfunktionen.
 
@@ -229,17 +229,17 @@ Es gibt eine Benutzerliste, aus der der Benutzer einen User auswählen kann. Wir
 
 Der Benutzer kann eine Sitzung löschen, Datensätze bearbeiten oder löschen und auch neue Benutzer erstellen, löschen, bearbeiten oder als Liste abrufen. Im Frontend ist allerdings nicht alles von dieser Funktionalität umgesetzt worden.
 
-![WEBAPP](./Web01.png)
+![WEBAPP](imgs/Web01.png)
 
-![WEBAPP](./Web02.png)
+![WEBAPP](imgs/Web02.png)
 
 ---
 
 ### Klassendiagramm und Datenmodelle
 
-![Datenmodelle](MySQL.png)
+![Datenmodelle](imgs/MySQL.png)
 
-![Klassendiagramm](KlassenDiagramm.png)
+![Klassendiagramm](imgs/KlassenDiagramm.png)
 
 ---
 
@@ -279,12 +279,12 @@ Dieses manuelle Test & Testprotokoll dokumentiert die Ergebnisse der positiven u
 
 | Test-ID | Befehlen                                                    | Ergebnis          |
 |---------|----------------------------------------------------------|-------------------|
-| TC-001  | [image]                                        |      Alles funktioniert       |
+| TC-001  |    ![test_image01](imgs/tc01.png)                                |      Alles funktioniert       |
 | TC-002  | `curl -X 'GET' \ 'http://localhost:8080/api/keystrokes' \ -H 'accept: */*'`  |  200 Alles funktioniert                 |
 | TC-003  | N/A die Verbindung wird immer mit unterschiedlich token erstellt, zu gehen: http://localhost:8080/ dort Js verbindet mit server immer     |  101 Alles funktioniert                 |
-| TC-004  | [image] |  Alles funktioniert                 |
+| TC-004  | ![test_image04](imgs/tc04.png) |  Alles funktioniert                 |
 | TC-005  | die App öffnen 0 /0 ergibt NaN ` |    Alles funktioniert               |
-| TC-006  | [image]     | Alles funktioniert                  |
+| TC-006  | ![test_image06](imgs/tc04.png)     | Alles funktioniert                  |
 
 
 ### JUnit-Tests 
@@ -347,7 +347,7 @@ git clone <Repository-URL>
 ```
 Navigieren Sie anschliessend in das Backend-Verzeichnis:
 ```bash
-cd <Projektverzeichnis>/Backend
+cd <Projektverzeichnis>/backend
 ```
 
 ##### 2.3. MySQl User, Datenbank und `application.properties`
@@ -376,13 +376,50 @@ Das Backend ist so konfiguriert, dass es unabhängig von einer Frontend- oder De
 
 #### 3. Fronted
 
-##### 3.1. 
+##### 3.1. Repository klonen
+Klonen Sie das Repository für das Frontend in Ihr lokales Verzeichnis:
+```bash
+git clone <Repository-URL>
+```
+Navigieren Sie anschliessend in das Frontend-Verzeichnis:
+```bash
+cd <Projektverzeichnis>/frontend
+```
 
-##### 3.2. 
+##### 3.2. Abhängigkeiten installieren
+Die Anhändigkeiten sind schon in `package.json` drin.
+```bash
+npm install
+```
 
-##### 3.3. 
+##### 3.3. Vite konfigurieren
+Stellen Sie sicher, dass Ihre Vite-Konfiguration korrekt ist. Diese sollte in einer Datei namens vite.config.js liegen. Hier ist ein Beispiel:
 
-##### 3.4. 
+```javascript
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8080',
+        changeOrigin: true,
+        secure: false,
+      },
+    },
+  },
+});
+```
+
+##### 3.4. Frontend starten
+
+Starten Sie das Frontend mit dem folgenden Befehl:
+
+``` bash
+npm run dev
+```
 
 ---
 
