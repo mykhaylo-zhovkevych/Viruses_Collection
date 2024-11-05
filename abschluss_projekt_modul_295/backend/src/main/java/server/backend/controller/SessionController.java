@@ -68,6 +68,7 @@ public class SessionController {
      * @param session die aktuelle HTTP-Sitzung
      * @return die Benutzer-ID der aktuellen Sitzung
      */
+    // Interner Endpoint
     @GetMapping("/getSession")
     public Long getSession(HttpSession session) {
         return (Long) session.getAttribute("userId"); 
@@ -99,7 +100,7 @@ public class SessionController {
      */
     @DeleteMapping("/api/sessions/{sessionId}")
     public ResponseEntity<Void> deleteSession(@PathVariable Long sessionId) {
-        sessionService.deleteSession(sessionId); // Angenommen, deleteSession ist die Methode zum Löschen
+        sessionService.deleteSession(sessionId);
         return ResponseEntity.noContent().build();
     }
 }

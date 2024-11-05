@@ -14,12 +14,15 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
+    /* @NotBlank(message = "Username is required")
+    @Size(max = 50) */
     @Column(nullable = false, length = 50)
     private String username;
 
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
+    /* @NotBlank(message = "Role is required") */
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private UserRole role;

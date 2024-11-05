@@ -62,6 +62,4 @@ public class KeystrokeControllerRest {
         keystrokeService.deleteKeystroke(keystrokeId);
         return ResponseEntity.noContent().build();
     }
-
-
 }

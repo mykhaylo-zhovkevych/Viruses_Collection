@@ -1,14 +1,14 @@
 package backend.controller;
 
 import backend.model.User;
-import backend.service.UserService;
 import backend.repository.UserRepository;
+import backend.service.UserService;
+import java.util.List;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 
 
@@ -39,7 +39,7 @@ public class UserController {
      *         und dem neu erstellten Benutzer-ID oder einem Fehlerstatus
      */
     @PostMapping("/createUser")
-    public ResponseEntity<String> createUser(@RequestBody User user) {
+    public ResponseEntity<String> createUser(@Valid @RequestBody User user) {
         try {
             userRepository.save(user);
             return ResponseEntity.ok("User created with ID: " + user.getUserId());
@@ -76,7 +76,7 @@ public class UserController {
      *         und der neu erstellten Benutzer-ID oder einem Fehlerstatus
      */
     @PutMapping("/api/users/{userId}") 
-    public ResponseEntity<User> updateUser(@PathVariable Long userId, @RequestBody User updatedUser) {
+    public ResponseEntity<User> updateUser(@PathVariable Long userId, @Valid @RequestBody User updatedUser) {
         updatedUser.setUserId(userId);
         User savedUser = userService.saveUser(updatedUser);
         return ResponseEntity.ok(savedUser);

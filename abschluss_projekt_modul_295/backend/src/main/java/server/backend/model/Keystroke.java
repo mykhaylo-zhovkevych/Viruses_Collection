@@ -2,6 +2,7 @@ package backend.model;
 
 import jakarta.persistence.*;
 import java.util.Date;
+import jakarta.validation.constraints.Size;
 
 /**
  * Diese Klasse repräsentiert ein Tastenereignis, das mit einer Sitzung verknüpft ist.
@@ -19,6 +20,7 @@ public class Keystroke {
 
     @Lob
     @Column(columnDefinition = "MEDIUMTEXT")
+    @Size(max = 2000, message = "Text must be no longer than 2000 characters")
     private String text; 
 
     @Lob

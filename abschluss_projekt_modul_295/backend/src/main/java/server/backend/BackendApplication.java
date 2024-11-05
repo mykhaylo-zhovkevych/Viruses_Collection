@@ -47,5 +47,5 @@ public class BackendApplication implements CommandLineRunner {
         } else {
             System.out.println("Admin user already exists.");
         }
-    }    
+    }
 }

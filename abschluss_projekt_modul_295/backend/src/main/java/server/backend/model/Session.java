@@ -2,6 +2,7 @@ package backend.model;
 
 import jakarta.persistence.*;
 import java.util.Date;
+// import jakarta.validation.constraints.FutureOrPresent;
 
 /**
  * Diese Klasse repräsentiert eine Sitzung, die einem Benutzer zugeordnet ist.
@@ -18,6 +19,7 @@ public class Session {
     private User user;
 
     @Column(nullable = false)
+    // @FutureOrPresent(message = "Start time must be in the present or future")
     private Date startTime; 
 
     @Column
