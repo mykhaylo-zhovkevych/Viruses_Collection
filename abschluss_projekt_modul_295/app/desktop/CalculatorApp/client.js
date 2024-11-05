@@ -1,4 +1,4 @@
-import SockJS from 'sockjs-client';
+/* import SockJS from 'sockjs-client';
 import Stomp from 'stompjs';
 import fetch from 'node-fetch';
 
@@ -49,4 +49,4 @@ async function createSession(userId) {
 function sendKeystroke(keystrokeData) {
     stompClient.send("/app/keystroke", {}, JSON.stringify(keystrokeData));
     console.log('Keystroke gesendet:', JSON.stringify(keystrokeData));
-}
+} */
