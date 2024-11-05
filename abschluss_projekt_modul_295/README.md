@@ -18,7 +18,7 @@
    - [Klassendiagramm und Datenmodelle](#klassendiagramm-und-datenmodelle)
    - [API-Dokumentation](#api-dokumentation)
 5. [Kontrollieren](#kontrollieren)
-   - [Testplan](#Testplan-und-manuelle-Test)
+   - [Testplan](#Präludium)
 6. [Auswerten](#auswerten)
    - [Installationsanleitung](#ressourcen)
    - [Ressourcen](#ressourcen)
@@ -116,7 +116,7 @@ Eine Desktop-Taschenrechner-App, die in Windows und Linux funktioniert, hat nich
 
 ---
 
-## Entscheidungen
+## Entscheiden
 
 Die wichtigsten Entscheidungen, die ich während der Programmierung getroffen habe, sind folgende:
 
