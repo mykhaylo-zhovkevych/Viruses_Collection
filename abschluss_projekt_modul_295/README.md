@@ -1,3 +1,5 @@
+# Dokumentation für das Abschlussprojekt `Calc-Trojan-App`
+
 ---
 # Inhaltsverzeichnis
 
