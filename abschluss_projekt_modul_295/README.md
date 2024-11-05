@@ -291,6 +291,7 @@ Dieses manuelle Test & Testprotokoll dokumentiert die Ergebnisse der positiven u
 
 In der JUnit Test wurden die `/api/..` Endpoins getestet und noch ein paar Szenario mit Mockup gemacht. 
 
+Die Klasse KeystrokeControllerRestTest testet die beiden Methoden GET und PUT. Bei GET sollen die Daten abgerufen werden, und bei PUT sollen die Daten aktualisiert werden. Der Server bearbeitet die Anfragen richtig, da im Frontend alles funktioniert. Allerdings kann ich den JUnit-Test nicht richtig ausführen.
 
 ---
 
