@@ -228,9 +228,9 @@ Es gibt eine Benutzerliste, aus der der Benutzer einen User auswählen kann. Wir
 
 Der Benutzer kann eine Sitzung löschen, Datensätze bearbeiten oder löschen und auch neue Benutzer erstellen, löschen, bearbeiten oder als Liste abrufen. Im Frontend ist allerdings nicht alles von dieser Funktionalität umgesetzt worden.
 
-![WEBAPP](../Web01.png)
+![WEBAPP](./Web01.png)
 
-![WEBAPP](../Web02.png)
+![WEBAPP](./Web02.png)
 
 ---
 
@@ -238,6 +238,7 @@ Der Benutzer kann eine Sitzung löschen, Datensätze bearbeiten oder löschen un
 
 ![Datenmodelle](MySQL.png)
 
+![Klassendiagramm](KlassenDiagramm.png)
 
 ---
 
@@ -255,7 +256,15 @@ Die vollständige Dokumentation ist unter diesem Link verfügbar: [http://localh
 
 ## Kontrollieren
 
-### Testplan und manuelle Test
+### Testplan und manuelle Test inklusive Testprotokoll 
+
+#### Präludium
+Dieses manuelle Test & Testprotokoll dokumentiert die Ergebnisse der positiven und negativen Tests des Projkets. Die Tests decken alle wesentlichen Funktionen des Projekts und seiner Module ab.
+
+
+#### Test inklusive Testprotokol
+**Datum:** 04.11.2024  
+**Tester:** Mykhaylo ZHovkevych
 
 | Testfall-ID | Testfallbeschreibung                                          | Eingabedaten                            | Erwartetes Ergebnis                                           | Tatsächliches Ergebnis                                                                                                                                            | Status     |
 |-------------|---------------------------------------------------------------|-----------------------------------------|----------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|
@@ -310,11 +319,28 @@ Installieren Sie die neueste Version von Node.js, idealerweise Version 20 oder h
 }
 ```
 
-#### 1.6. App starten => npm start
+##### 1.6. App starten => npm start
 
 #### 2. Backend
 
+##### 2.1. 
+
+##### 2.2. 
+
+##### 2.3. 
+
+##### 2.4. 
+
+
 #### 3. Fronted
+
+##### 3.1. 
+
+##### 3.2. 
+
+##### 3.3. 
+
+##### 3.4. 
 
 ---
 
