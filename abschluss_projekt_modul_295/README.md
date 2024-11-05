@@ -20,7 +20,7 @@
 5. [Kontrollieren](#kontrollieren)
    - [Testplan](#Präludium)
 6. [Auswerten](#auswerten)
-   - [Installationsanleitung](#ressourcen)
+   - [Installationsanleitung](#Auswerten)
    - [Ressourcen](#ressourcen)
 
 ---
