@@ -20,7 +20,7 @@
 5. [Kontrollieren](#kontrollieren)
    - [Testplan](#Testplan-und-manuelle-Test)
 6. [Auswerten](#auswerten)
-   - [Installationsanleitung](#Installationsanleitung-für-Desktop-App-&-Backend-Frontend)
+   - [Installationsanleitung](#ressourcen)
    - [Ressourcen](#ressourcen)
 
 ---
@@ -437,6 +437,7 @@ npm run dev
 
 4. **Testtools**
    - Jest
+   - JUnit 5
 
 5. **Build-Tools**
    - Vite
