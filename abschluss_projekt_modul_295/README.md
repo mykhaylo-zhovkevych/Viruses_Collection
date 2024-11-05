@@ -284,7 +284,7 @@ Dieses manuelle Test & Testprotokoll dokumentiert die Ergebnisse der positiven u
 | TC-003  | N/A die Verbindung wird immer mit unterschiedlich token erstellt, zu gehen: http://localhost:8080/ dort Js verbindet mit server immer     |  101 Alles funktioniert                 |
 | TC-004  | ![test_image04](imgs/tc04.png) |  Alles funktioniert                 |
 | TC-005  | die App öffnen 0 /0 ergibt NaN ` |    Alles funktioniert               |
-| TC-006  | ![test_image06](imgs/tc04.png)     | Alles funktioniert                  |
+| TC-006  | ![test_image06](imgs/tc06.png)     | Alles funktioniert                  |
 
 
 ### JUnit-Tests 
@@ -425,4 +425,30 @@ npm run dev
 
 ### Ressourcen
 
-*Hier werden die Ressourcen aufgelistet, die für das Projekt benötigt werden.*
+1. **Entwicklungsumgebungen**
+   - Visual Studio Code
+
+2. **Datenbanken**
+   - MySQL
+
+3. **Frameworks**
+   - React
+   - Spring Boot 
+
+4. **Testtools**
+   - Jest
+
+5. **Build-Tools**
+   - Vite
+   - Maven
+
+6. **Programmiersprache**
+   - Java
+   - JavaScript
+
+7. **API-Management**
+   - Postman 
+
+8. **HTTP-Client**
+    - Axios
+    - Fetch API
