@@ -22,6 +22,7 @@
 6. [Auswerten](#auswerten)
    - [Installationsanleitung](#Auswerten)
    - [Ressourcen](#ressourcen)
+   - [Selbstkritische Reflexion](#[Selbstkritische-Reflexion)
 
 ---
 
@@ -454,3 +455,14 @@ npm run dev
 8. **HTTP-Client**
     - Axios
     - Fetch API
+  
+
+### Selbstkritische Reflexion
+
+Zum Schluss des Projekts habe ich viele neue Erfahrungen mit Spring allgemein gemacht. Das Ergebnis, das ich am Ende erhalten habe, ist sehr positiv, da alle Ziele, die ich mir gesetzt habe, erreicht wurden. Die Desktop-App funktioniert reibungslos und verarbeitet die Daten wie gedacht. Der Server ist vielseitig und arbeitet mit dem Messagebroker sowie mit einer kleinen REST-API für das Frontend.
+
+Ich habe nicht viel Zeit in das Frontend investiert, aber die grundlegende Funktionalität ist vorhanden. Leider konnte ich nicht alles rechtzeitig erledigen, insbesondere die JUnit-Tests. Dafür habe ich nicht genug Zeit eingeplant, um sie gründlich durchzuführen. Alles andere habe ich jedoch sauber umgesetzt. Natürlich gibt es mehrere Punkte in der Architektur des Servers, die ich möglicherweise besser hätte lösen können, zum Beispiel könnte ich WebSocket von der REST-API abtrennen. Aber solange alles funktioniert, bin ich zufrieden.
+
+Es gibt ein paar kleine Teile im Server-Code, die nicht ganz implementiert sind, z.B. das Vergessen, die end_time der Session zu senden, bevor sie abbricht. Das ist jedoch machbar. Vielleicht können nach dem Code-Review zusätzliche Probleme aufgedeckt werden. Bis jetzt ist das die grösste Herausforderung, die ich am 05.11.2024 bemerkt habe. Ansonsten fand ich das Modul cool und es ist ein guter Start, um mich weiter in das Thema zu vertiefen und neue Theorien zu lernen. Am Ende habe ich ein positives Gefühl über das Modul sowie über das Abschlussprojekt.
+
+---
