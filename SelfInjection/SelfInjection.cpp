@@ -31,31 +31,31 @@ int main(int argc, char** argv)
 	// First allocating memory for the shellcode. Commit and Reserve is for allocation
     LPVOID allocated_mem = VirtualAlloc(NULL, sizeof(shellcode), (MEM_COMMIT | MEM_RESERVE), PAGE_EXECUTE_READWRITE);
 
-    //if (allocated_mem == NULL) {
-    //    printf("Failed to allocate memory: %d\n", GetLastError());
-    //    return 1;
-    //}
+    if (allocated_mem == NULL) {
+        printf("Failed to allocate memory: %d\n", GetLastError());
+        return 1;
+    }
 
-    //printf("Memory Allocated at address: 0x%p\n", allocated_mem);
-    //// Write shellcode to the allocated memory
-    //RtlCopyMemory(allocated_mem, shellcode, sizeof(shellcode));
+    printf("Memory Allocated at address: 0x%p\n", allocated_mem);
+    // Write shellcode to the allocated memory
+    RtlCopyMemory(allocated_mem, shellcode, sizeof(shellcode));
 
-    //printf("Shellcode is written to allocated memory!\n");
-    //// Create thread to execute the MessageBox shellcode
-    //HANDLE hThread = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)allocated_mem, NULL, 0, NULL);
+    printf("Shellcode is written to allocated memory!\n");
+    // Create thread to execute the MessageBox shellcode
+    HANDLE hThread = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)allocated_mem, NULL, 0, NULL);
 
-    //if (hThread == NULL) {
-    //    printf("Failed to create thread: %d\n", GetLastError());
-    //    return 1;
-    //}
-    //// Halt execution until created thread returns
-    //WaitForSingleObject(hThread, INFINITE);
-    //// Close handle to thread
-    //CloseHandle(hThread);
-    //// Free allocated memory
-    //VirtualFree(allocated_mem, 0, MEM_RELEASE);
+    if (hThread == NULL) {
+       printf("Failed to create thread: %d\n", GetLastError());
+        return 1;
+    }
+    // Halt execution until created thread returns
+    WaitForSingleObject(hThread, INFINITE);
+    // Close handle to thread
+    CloseHandle(hThread);
+	// Free allocated memory, after the shellcode has been executed
+    VirtualFree(allocated_mem, 0, MEM_RELEASE);
 
-    //return 0;
+    return 0;
 
 
 }
